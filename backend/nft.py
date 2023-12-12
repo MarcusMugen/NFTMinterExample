@@ -1,7 +1,6 @@
 from os import environ
 import logging
 import requests
-import base64
 
 logging.basicConfig(level="INFO")
 logger = logging.getLogger(__name__)
@@ -14,35 +13,13 @@ ERC721_PORTAL_ADDRESS = "0x237F8DD094C0e47f4236f12b4Fa01d6Dae89fb87".lower()
 
 last_token_id = 0
 
-def str2hex(string):
-    """
-    Encode a string as an hex string
-    """
-    return binary2hex(str2binary(string))
-
 def hex2str(hexstr):
-    """
-    Decodes a hex string into a regular string
-    """
-    return hex2binary(hexstr).decode("utf-8")
+    # Decodes a hex string (with 0x) into a regular string
+    return bytes.fromhex(hexstr[2:]).decode("utf-8")
 
-def hex2binary(hexstr):
-    """
-    Decodes a hex string into a regular byte string
-    """
-    return bytes.fromhex(hexstr[2:])
-
-def str2binary(string):
-    """
-    Encode a string as an binary string
-    """
-    return string.encode("utf-8")
-
-def binary2hex(binary):
-    """
-    Encode a binary as an hex string
-    """
-    return "0x" + binary.hex()
+def str2hex(string):
+    # Encodes a string into a hex string with 0x prefix
+    return "0x" + string.encode("utf-8").hex()
 
 
 def send_notice(notice):
@@ -50,6 +27,9 @@ def send_notice(notice):
 
 def send_voucher(voucher):
     send_post("voucher",voucher)
+
+def send_report(report):
+    send_post("report",report)
 
 def send_post(endpoint,json_data):
     response = requests.post(rollup_server + f"/{endpoint}", json=json_data)
@@ -71,7 +51,6 @@ def handle_advance(data):
     except Exception as e:
         status = "reject"
         msg = f"Error processing request: {e}"
-        traceback.print_exc()
         logger.error(msg)
         send_report({"payload": str2hex(msg)})
 
