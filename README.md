@@ -40,11 +40,17 @@ With a straightfoward approach, to run this solution you have to mount the [fron
 
 ### Create the NFT - Sending inputs and executing vouchers
 
-With the to parts running you can send the 'create' payload in the inputbox at the send option:
+With the two parts running you can send the 'create' payload in the input box at the send option:
+![image](https://github.com/MarcusMugen/NFTMinterExample/assets/153661799/f787fe93-9dd5-444b-9183-db35df487a83)
 
 This will process the function that is responsible to create a voucher for the NFT. After that, you can check the voucher options and execute it.
 
+![image](https://github.com/MarcusMugen/NFTMinterExample/assets/153661799/08ddb615-729b-4c9d-b53d-ead7ffbc06e1)
+
 ### Notices
 
-You can also see the list of the past queries to the backend loading the notice list in the option button at the Notice field:
+You can also see the list of the past queries to the backend loading the notice list in the Reload button at the Notice field:
+
+![image](https://github.com/MarcusMugen/NFTMinterExample/assets/153661799/a73d643c-60ce-4fbc-9c4a-b3517ece0c80)
+
 
